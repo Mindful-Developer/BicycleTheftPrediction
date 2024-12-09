@@ -84,6 +84,8 @@ pip install -r requirements.txt
   - flask-restx >= 1.1.0
   - joblib >= 1.0.1
   - requests >= 2.26.0
+  - shapely >= 1.7.1
+  - pyproj >= 3.0.1
 
 ## Usage
 
