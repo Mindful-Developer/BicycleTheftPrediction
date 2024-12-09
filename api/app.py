@@ -1,3 +1,4 @@
+from tkinter import N
 from tkinter.scrolledtext import example
 
 from flask import Flask
@@ -110,9 +111,13 @@ class PredictTheft(Resource):
         """
         if model is None or feature_order is None:
             return {'error': "Model not loaded. Please train the model first."}, 503
-
         try:
             data = api.payload
+
+            for field in ['BIKE_COST', 'BIKE_MAKE', 'BIKE_MODEL', 'BIKE_SPEED', 'BIKE_COLOUR']: # Optional fields
+                if field not in data:
+                    data[field] = None
+                    
             df = pd.DataFrame([data])
             X = preprocess_features(df)
             X = X[feature_order]
